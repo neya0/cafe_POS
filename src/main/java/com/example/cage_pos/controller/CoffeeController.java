@@ -28,8 +28,16 @@ public class CoffeeController {
     }
 
     @Description("커피 메뉴 지우기")
-    @DeleteMapping("/coffee/{id}")
-    public String deleteCoffee (@PathVariable Long id) {
-        return coffeeService.deleteCoffee(id);
+    @DeleteMapping("/coffee")
+    public String deleteCoffee (@RequestParam String type, @RequestParam Long id) {
+        return coffeeService.deleteCoffee(type, id);
+    }
+
+    @Description("커피 메뉴 하나 불러오기")
+    @GetMapping("/coffee")
+    public Coffee getCoffee (@RequestParam String type, @RequestParam Long id) {
+        System.out.println("type = " + type);
+        System.out.println("id = " + id);
+        return coffeeService.getCoffee(type, id);
     }
 }
